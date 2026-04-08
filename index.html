@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti, Alba ❤️</title>
+    <title>Para ti, Alba</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&display=swap');
 
         :root {
-            --pink-hot:    #ff6b9d;
-            --pink-mid:    #ff8fb3;
-            --pink-pale:   #ffb3cc;
-            --pink-soft:   #ffd6e7;
-            --pink-blush:  #fff0f5;
-            --bg-deep:     #1e0717;
-            --bg-mid:      #380d2a;
-            --bg-light:    #54163f;
-            --card-bg:     rgba(255, 107, 157, 0.07);
-            --card-border: rgba(255, 107, 157, 0.22);
-            --text-main:   #ffe0ee;
-            --text-soft:   #d4a0b8;
-            --text-muted:  #9e6880;
+            --accent:       #c98a8e;
+            --accent-light: #dba8ab;
+            --accent-pale:  #e8c2c5;
+            --accent-soft:  #f2dce0;
+            --accent-glow:  rgba(201, 138, 142, 0.4);
+            --bg-deep:      #faf5f5;
+            --bg-mid:       #f3ecec;
+            --bg-card:      rgba(201, 138, 142, 0.06);
+            --card-border:  rgba(201, 138, 142, 0.18);
+            --text-main:    #3d2c2e;
+            --text-soft:    #6b5356;
+            --text-muted:   #9a8083;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,15 +28,15 @@
             font-family: 'Quicksand', sans-serif;
             min-height: 100vh;
             background:
-                radial-gradient(ellipse at top left,  #5a0e3e 0%, transparent 55%),
-                radial-gradient(ellipse at bottom right, #3d0a2a 0%, transparent 55%),
-                linear-gradient(160deg, #1e0717 0%, #2e0d20 50%, #1a0612 100%);
+                radial-gradient(ellipse at 20% 0%, rgba(201, 138, 142, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 100%, rgba(219, 168, 171, 0.08) 0%, transparent 55%),
+                linear-gradient(160deg, #faf5f5 0%, #f5eeee 50%, #f8f3f3 100%);
             color: var(--text-main);
             overflow-x: hidden;
         }
 
-        /* ── Floating hearts ── */
-        .hearts-bg {
+        /* ── Floating particles ── */
+        .particles-bg {
             position: fixed;
             inset: 0;
             pointer-events: none;
@@ -45,16 +44,16 @@
             overflow: hidden;
         }
 
-        .floating-heart {
+        .particle {
             position: absolute;
-            opacity: 0.18;
+            opacity: 0.12;
             animation: floatUp linear infinite;
         }
 
         @keyframes floatUp {
             0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
-            10%  { opacity: 0.18; }
-            90%  { opacity: 0.18; }
+            10%  { opacity: 0.12; }
+            90%  { opacity: 0.12; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
@@ -85,28 +84,28 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(255,143,179,0.12));
-            border: 1px solid rgba(255,107,157,0.35);
+            background: linear-gradient(135deg, rgba(201,138,142,0.12), rgba(201,138,142,0.05));
+            border: 1px solid rgba(201,138,142,0.22);
             border-radius: 30px;
             padding: 6px 16px;
             font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--pink-mid);
+            color: var(--accent);
             margin-bottom: 22px;
         }
 
         .welcome-icon {
             font-size: 4.5rem;
             margin-bottom: 18px;
-            animation: pulse 2.2s ease-in-out infinite;
-            filter: drop-shadow(0 0 18px rgba(255,107,157,0.5));
+            animation: pulse 2.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 18px var(--accent-glow));
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(255,107,157,0.4)); }
-            50%       { transform: scale(1.12); filter: drop-shadow(0 0 28px rgba(255,107,157,0.7)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(201,138,142,0.3)); }
+            50%       { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(201,138,142,0.5)); }
         }
 
         .welcome-title {
@@ -114,7 +113,7 @@
             font-size: 2.1rem;
             text-align: center;
             margin-bottom: 14px;
-            background: linear-gradient(135deg, #ff6b9d, #ffb3cc, #ffd6e7);
+            background: linear-gradient(135deg, #c98a8e, #dba8ab, #e8c2c5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -134,18 +133,18 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255,107,157,0.12);
-            border: 1px solid rgba(255,107,157,0.3);
+            background: rgba(201,138,142,0.08);
+            border: 1px solid rgba(201,138,142,0.2);
             border-radius: 20px;
             padding: 9px 22px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--pink-pale);
+            color: var(--accent-light);
             margin-bottom: 32px;
         }
 
         .btn {
-            background: linear-gradient(135deg, #ff6b9d, #e8529a, #c93d85);
+            background: linear-gradient(135deg, #c98a8e, #b57478, #a66065);
             color: #fff;
             border: none;
             padding: 16px 52px;
@@ -155,18 +154,18 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 28px rgba(255,107,157,0.45);
+            box-shadow: 0 6px 28px rgba(201, 138, 142, 0.3);
             letter-spacing: 0.02em;
         }
 
-        .btn:hover  { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(255,107,157,0.6); }
+        .btn:hover  { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(201, 138, 142, 0.4); }
         .btn:active { transform: translateY(0); }
 
         /* ── Question screen ── */
         .progress-bar-container {
             width: 100%;
             height: 7px;
-            background: rgba(255,107,157,0.12);
+            background: rgba(201,138,142,0.1);
             border-radius: 4px;
             margin-bottom: 12px;
             overflow: hidden;
@@ -174,10 +173,10 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b9d, #ffb3cc);
+            background: linear-gradient(90deg, #c98a8e, #dba8ab);
             border-radius: 4px;
             transition: width 0.5s ease;
-            box-shadow: 0 0 8px rgba(255,107,157,0.5);
+            box-shadow: 0 0 8px rgba(201,138,142,0.4);
         }
 
         .question-header {
@@ -210,7 +209,7 @@
 
         @keyframes loseLife {
             0%   { transform: scale(1); }
-            30%  { transform: scale(1.6); filter: drop-shadow(0 0 6px #ff6b9d); }
+            30%  { transform: scale(1.6); filter: drop-shadow(0 0 6px var(--accent)); }
             65%  { transform: scale(0.5); opacity: 0.4; }
             100% { transform: scale(0.65); opacity: 0.18; }
         }
@@ -218,14 +217,31 @@
         .lives span.losing { animation: loseLife 0.55s ease forwards; }
 
         .question-card {
-            background: var(--card-bg);
+            background: var(--bg-card);
             backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 30px 24px 26px;
             width: 100%;
             margin-bottom: 16px;
-            box-shadow: 0 4px 24px rgba(255,107,157,0.08), inset 0 1px 0 rgba(255,200,220,0.1);
+            box-shadow: 0 4px 24px rgba(201,138,142,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .question-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(201,138,142,0.1);
+            border: 1px solid rgba(201,138,142,0.2);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            text-align: center;
         }
 
         .question-emoji {
@@ -250,8 +266,8 @@
         }
 
         .option-btn {
-            background: rgba(255,107,157,0.06);
-            border: 1.5px solid rgba(255,107,157,0.16);
+            background: rgba(201,138,142,0.04);
+            border: 1.5px solid rgba(201,138,142,0.12);
             color: var(--text-soft);
             padding: 15px 20px;
             border-radius: 16px;
@@ -265,18 +281,25 @@
         }
 
         .option-btn:hover {
-            background: rgba(255,107,157,0.14);
-            border-color: rgba(255,107,157,0.45);
-            color: var(--pink-blush);
+            background: rgba(201,138,142,0.1);
+            border-color: rgba(201,138,142,0.35);
+            color: var(--accent-soft);
             transform: translateX(4px);
         }
 
         .option-btn.correct {
-            background: rgba(255,107,157,0.2);
-            border-color: var(--pink-hot);
-            color: var(--pink-soft);
+            background: rgba(100, 160, 100, 0.1);
+            border-color: rgba(100, 160, 100, 0.5);
+            color: #4a8a4a;
             pointer-events: none;
-            box-shadow: 0 0 16px rgba(255,107,157,0.3);
+            box-shadow: 0 0 12px rgba(100, 160, 100, 0.1);
+        }
+
+        .option-btn.wrong-selected {
+            background: rgba(180, 90, 80, 0.08);
+            border-color: rgba(180, 90, 80, 0.35);
+            color: #b07070;
+            pointer-events: none;
         }
 
         .option-btn.disabled {
@@ -297,16 +320,22 @@
         }
 
         .feedback.correct {
-            background: rgba(255,107,157,0.1);
-            border: 1px solid rgba(255,107,157,0.3);
-            color: var(--pink-pale);
+            background: rgba(100, 160, 100, 0.08);
+            border: 1px solid rgba(100, 160, 100, 0.2);
+            color: #4a8a4a;
+        }
+
+        .feedback.wrong {
+            background: rgba(180, 90, 80, 0.06);
+            border: 1px solid rgba(180, 90, 80, 0.15);
+            color: #a07070;
         }
 
         .next-btn {
             margin-top: 18px;
-            background: linear-gradient(135deg, rgba(255,107,157,0.18), rgba(255,107,157,0.08));
-            border: 1.5px solid rgba(255,107,157,0.35);
-            color: var(--pink-pale);
+            background: linear-gradient(135deg, rgba(201,138,142,0.14), rgba(201,138,142,0.06));
+            border: 1.5px solid rgba(201,138,142,0.3);
+            color: var(--accent-light);
             padding: 14px 44px;
             border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
@@ -317,16 +346,16 @@
         }
 
         .next-btn:hover {
-            background: rgba(255,107,157,0.25);
-            border-color: rgba(255,107,157,0.6);
-            box-shadow: 0 4px 20px rgba(255,107,157,0.25);
+            background: rgba(201,138,142,0.2);
+            border-color: rgba(201,138,142,0.5);
+            box-shadow: 0 4px 20px rgba(201,138,142,0.2);
         }
 
         /* ── Result / Game Over ── */
         .result-icon {
             font-size: 4rem;
             margin-bottom: 14px;
-            filter: drop-shadow(0 0 20px rgba(255,107,157,0.6));
+            filter: drop-shadow(0 0 20px var(--accent-glow));
         }
 
         .result-title {
@@ -334,7 +363,7 @@
             font-size: 1.85rem;
             text-align: center;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #ff6b9d, #ffb3cc, #ffd6e7);
+            background: linear-gradient(135deg, #c98a8e, #dba8ab, #e8c2c5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -350,8 +379,8 @@
         }
 
         .result-love-note {
-            background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(255,143,179,0.06));
-            border: 1px solid rgba(255,107,157,0.25);
+            background: linear-gradient(135deg, rgba(201,138,142,0.08), rgba(201,138,142,0.03));
+            border: 1px solid rgba(201,138,142,0.18);
             border-radius: 20px;
             padding: 26px 24px;
             text-align: center;
@@ -360,15 +389,15 @@
             color: var(--text-soft);
             margin-bottom: 28px;
             max-width: 380px;
-            box-shadow: inset 0 1px 0 rgba(255,200,220,0.1);
+            box-shadow: inset 0 1px 0 rgba(201,138,142,0.08);
         }
 
-        .result-love-note strong { color: var(--pink-mid); }
+        .result-love-note strong { color: var(--accent); }
 
         .restart-btn {
             background: transparent;
-            border: 1.5px solid rgba(255,107,157,0.35);
-            color: var(--pink-mid);
+            border: 1.5px solid rgba(201,138,142,0.3);
+            color: var(--accent);
             padding: 12px 36px;
             border-radius: 50px;
             font-family: 'Quicksand', sans-serif;
@@ -379,8 +408,8 @@
         }
 
         .restart-btn:hover {
-            background: rgba(255,107,157,0.1);
-            border-color: rgba(255,107,157,0.55);
+            background: rgba(201,138,142,0.08);
+            border-color: rgba(201,138,142,0.45);
         }
 
         /* ── Intro screen ── */
@@ -397,8 +426,8 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            background: rgba(255,107,157,0.06);
-            border: 1px solid rgba(255,107,157,0.15);
+            background: rgba(201,138,142,0.04);
+            border: 1px solid rgba(201,138,142,0.1);
             border-radius: 16px;
             padding: 14px 18px;
         }
@@ -415,39 +444,7 @@
         }
 
         .intro-rule-text strong {
-            color: var(--pink-pale);
-        }
-
-        /* ── Question category tag ── */
-        .question-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(255,107,157,0.12);
-            border: 1px solid rgba(255,107,157,0.25);
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--pink-mid);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        /* ── Wrong feedback ── */
-        .feedback.wrong {
-            background: rgba(255,107,157,0.06);
-            border: 1px solid rgba(255,107,157,0.18);
-            color: var(--text-muted);
-        }
-
-        .option-btn.wrong-selected {
-            background: rgba(180, 60, 90, 0.15);
-            border-color: rgba(180, 60, 90, 0.4);
-            color: var(--text-muted);
-            pointer-events: none;
+            color: var(--accent-light);
         }
 
         /* Confetti */
@@ -481,49 +478,49 @@
 </head>
 <body>
 
-<div class="hearts-bg" id="heartsBg"></div>
+<div class="particles-bg" id="particlesBg"></div>
 
 <div class="container">
 
     <!-- WELCOME SCREEN -->
     <div class="screen active" id="welcomeScreen">
-        <div class="love-badge">💖 Quiz de amor &amp; recuerdos</div>
-        <div class="welcome-icon">💕</div>
+        <div class="love-badge">Quiz de recuerdos</div>
+        <div class="welcome-icon">&#10024;</div>
         <h1 class="welcome-title">Alba, esto es para ti</h1>
         <p class="welcome-subtitle">
-            Un pequeño juego sobre nosotros, sobre lo que hemos vivido y lo que nos hace especiales.<br><br>
-            ¿Cuánto recuerdas, amorcin?
+            Un juego sobre nosotros, sobre lo que hemos vivido y lo que nos hace especiales.<br><br>
+            A ver cuánto recuerdas, amorcin.
         </p>
-        <div class="welcome-date">💫 Juntos desde el 13 de noviembre de 2024</div>
-        <button class="btn" onclick="showIntro()">Empezar ❤️</button>
+        <div class="welcome-date">Juntos desde el 13 de noviembre de 2024</div>
+        <button class="btn" onclick="showIntro()">Empezar</button>
     </div>
 
     <!-- INTRO SCREEN -->
     <div class="screen" id="introScreen">
-        <div class="welcome-icon">🎮</div>
-        <h2 class="welcome-title" style="font-size:1.6rem;">¿Cómo funciona?</h2>
+        <div class="welcome-icon">&#127918;</div>
+        <h2 class="welcome-title" style="font-size:1.6rem;">Antes de empezar...</h2>
         <p class="welcome-subtitle" style="margin-bottom:20px;">
             Esto no es un examen, es un viaje por lo nuestro.
         </p>
         <div class="intro-rules">
             <div class="intro-rule">
-                <span class="intro-rule-icon">❤️</span>
+                <span class="intro-rule-icon">&#10084;&#65039;</span>
                 <span class="intro-rule-text">Tienes <strong>5 vidas</strong>. Si fallas, pierdes una.</span>
             </div>
             <div class="intro-rule">
-                <span class="intro-rule-icon">🎯</span>
+                <span class="intro-rule-icon">&#127919;</span>
                 <span class="intro-rule-text">Hay preguntas de <strong>recuerdos, lugares, bromas internas</strong> y más.</span>
             </div>
             <div class="intro-rule">
-                <span class="intro-rule-icon">💬</span>
+                <span class="intro-rule-icon">&#128172;</span>
                 <span class="intro-rule-text">Cada respuesta tiene un <strong>mensaje especial</strong> para ti.</span>
             </div>
             <div class="intro-rule">
-                <span class="intro-rule-icon">🏆</span>
-                <span class="intro-rule-text">Al final hay una <strong>sorpresa</strong>... si llegas 😏</span>
+                <span class="intro-rule-icon">&#127942;</span>
+                <span class="intro-rule-text">Al final hay una <strong>sorpresa</strong>... si llegas</span>
             </div>
         </div>
-        <button class="btn" onclick="startGame()">¡Vamos allá! 💕</button>
+        <button class="btn" onclick="startGame()">Vamos</button>
     </div>
 
     <!-- QUESTION SCREEN -->
@@ -546,16 +543,16 @@
 
     <!-- GAME OVER SCREEN -->
     <div class="screen" id="gameOverScreen">
-        <div class="result-icon">💔</div>
-        <h2 class="result-title">¡Se acabaron las vidas!</h2>
+        <div class="result-icon">&#128148;</div>
+        <h2 class="result-title">Se acabaron las vidas</h2>
         <p class="result-message" style="margin-top: 16px;">
-            Nada, nada... habrá que volver a vivir todos esos momentos juntos para refrescarte la memoria 😏❤️
+            Nada, nada... habrá que volver a vivir todos esos momentos juntos para refrescarte la memoria
         </p>
         <div class="result-love-note">
             Tranquila amorcin, lo importante no es acertar...<br>
-            es que <strong>todos esos recuerdos son nuestros</strong>. 💕
+            es que <strong>todos esos recuerdos son nuestros</strong>.
         </div>
-        <button class="restart-btn" onclick="restartGame()">Intentar de nuevo 🔄</button>
+        <button class="restart-btn" onclick="restartGame()">Intentar de nuevo</button>
     </div>
 
     <!-- RESULT SCREEN -->
@@ -564,7 +561,7 @@
         <h2 class="result-title" id="resultTitle"></h2>
         <p class="result-message" id="resultMessage"></p>
         <div class="result-love-note" id="resultNote"></div>
-        <button class="restart-btn" onclick="restartGame()">Volver a jugar 🔄</button>
+        <button class="restart-btn" onclick="restartGame()">Volver a jugar</button>
     </div>
 
 </div>
@@ -572,30 +569,30 @@
 <div class="confetti-container" id="confettiContainer"></div>
 
 <script>
-    // ── Floating hearts background ──
-    function createFloatingHearts() {
-        const container = document.getElementById('heartsBg');
-        const hearts = ['💕', '💗', '🩷', '✨', '💫', '🌸', '💖', '❤️'];
-        for (let i = 0; i < 18; i++) {
-            const heart = document.createElement('span');
-            heart.className = 'floating-heart';
-            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (9 + Math.random() * 14) + 's';
-            heart.style.animationDelay = (Math.random() * 12) + 's';
-            heart.style.fontSize = (0.7 + Math.random() * 1) + 'rem';
-            container.appendChild(heart);
+    // ── Floating particles background ──
+    function createParticles() {
+        const container = document.getElementById('particlesBg');
+        const items = ['\u2728', '\u2727', '\u00B7', '\u2022', '\u2726'];
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('span');
+            p.className = 'particle';
+            p.textContent = items[Math.floor(Math.random() * items.length)];
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (10 + Math.random() * 16) + 's';
+            p.style.animationDelay = (Math.random() * 14) + 's';
+            p.style.fontSize = (0.5 + Math.random() * 0.8) + 'rem';
+            p.style.color = 'rgba(201, 138, 142, 0.3)';
+            container.appendChild(p);
         }
     }
-    createFloatingHearts();
+    createParticles();
 
     // ── Questions data ──
     const allQuestions = [
-        // ── Momentos importantes ──
         {
-            emoji: "📅",
+            emoji: "\uD83D\uDCC5",
             category: "Momento importante",
-            question: "¿Cuándo empezó todo lo nuestro, gordi?",
+            question: "\u00BFCuándo empezó todo lo nuestro, gordi?",
             options: [
                 "13 de octubre de 2024",
                 "13 de noviembre de 2024",
@@ -603,14 +600,13 @@
                 "13 de diciembre de 2024"
             ],
             correct: 1,
-            correctMsg: "¡Exacto! 13 de noviembre de 2024. Y desde ese día no he parado de sonreír como un tonto 🥰",
-            wrongMsg: "¡Era el 13 de noviembre de 2024! Cómo se te va a olvidar eso, amorcin 😤❤️"
+            correctMsg: "13 de noviembre de 2024. Y desde ese día no he parado de sonreír como un tonto",
+            wrongMsg: "Era el 13 de noviembre de 2024. Cómo se te va a olvidar eso, amorcin"
         },
-        // ── Lugares ──
         {
-            emoji: "🏘️",
+            emoji: "\uD83C\uDFD8\uFE0F",
             category: "Nuestros lugares",
-            question: "¿Cuál es nuestro pueblo idílico, ese que descubrimos juntos?",
+            question: "\u00BFCuál es nuestro pueblo idílico, ese que descubrimos juntos?",
             options: [
                 "Santillana del Mar",
                 "San Vicente de la Barquera",
@@ -618,14 +614,13 @@
                 "Castro Urdiales"
             ],
             correct: 2,
-            correctMsg: "¡Comillas! Nuestro rincón mágico en Cantabria. Algún día tendremos que volver... 💫",
-            wrongMsg: "¡Era Comillas! Nuestro pueblecito especial en Cantabria. ¿Ya se te olvida? 😜"
+            correctMsg: "Comillas. Nuestro rincón mágico en Cantabria. Algún día tendremos que volver...",
+            wrongMsg: "Era Comillas. Nuestro pueblecito especial en Cantabria. Ya se te olvida..."
         },
-        // ── Anécdota graciosa ──
         {
-            emoji: "🐄",
+            emoji: "\uD83D\uDC04",
             category: "Anécdota graciosa",
-            question: "Cuando fuimos a la granja escuela vimos muchos animales... ¿cuál NO vimos?",
+            question: "Cuando fuimos a la granja escuela vimos muchos animales... \u00BFcuál NO vimos?",
             options: [
                 "Cabras",
                 "Conejos",
@@ -633,28 +628,13 @@
                 "Cerditos"
             ],
             correct: 2,
-            correctMsg: "¡Exacto! Ni rastro de pavos reales. Pero vaya cerda más gorda con sus 6 cerditos, ¿eh? 🐷😂",
-            wrongMsg: "¡Eran los pavos reales! Esos no estaban. Lo que sí vimos fue esa cerda enorme con sus 6 cerditos, los conejos, las cabras... 🐷🐰"
-        },
-        // ── Recuerdo bonito ──
-        {
-            emoji: "🚂",
-            category: "Recuerdo bonito",
-            question: "¿Cómo fuimos a Madrid por mi cumpleaños?",
-            options: [
-                "En coche",
-                "En avión",
-                "En tren",
-                "En autobús"
-            ],
-            correct: 2,
-            correctMsg: "¡En tren! Qué bien nos lo pasamos ese viaje, ¿eh? 🚄❤️",
-            wrongMsg: "¡Fuimos en tren! Menudo viajecito nos pegamos juntos 🚄"
+            correctMsg: "Ni rastro de pavos reales. Pero vaya cerda más gorda con sus 6 cerditos...",
+            wrongMsg: "Eran los pavos reales. Lo que sí vimos fue esa cerda enorme con sus 6 cerditos, los conejos, las cabras..."
         },
         {
-            emoji: "🎤",
+            emoji: "\uD83C\uDFA4",
             category: "Nuestras cosas",
-            question: "¿Qué actividad probamos por primera vez en Madrid y nos enganchó?",
+            question: "\u00BFQué actividad probamos por primera vez en Madrid y nos enganchó?",
             options: [
                 "Escape room",
                 "Ir a un monólogo",
@@ -662,29 +642,13 @@
                 "Teatro musical"
             ],
             correct: 1,
-            correctMsg: "¡Los monólogos! Desde entonces no paramos de buscar más. Nuestra nueva tradición 😄🎙️",
-            wrongMsg: "¡Fue ir a un monólogo! Y desde entonces somos fans oficiales del humor en vivo 🎤😂"
+            correctMsg: "Los monólogos. Desde entonces no paramos de buscar más. Nuestra nueva tradición",
+            wrongMsg: "Fue ir a un monólogo. Y desde entonces somos fans oficiales del humor en vivo"
         },
-        // ── Momento tierno ──
         {
-            emoji: "🐶",
-            category: "Momento tierno",
-            question: "¿Qué vimos súper especial en Tenerife que nos dejó flipando?",
-            options: [
-                "Un gato con dos colores de ojos",
-                "Un perro con síndrome de Down",
-                "Un loro que hablaba español",
-                "Una tortuga gigante en la playa"
-            ],
-            correct: 1,
-            correctMsg: "¡Sí! Ese perrete tan especial en Tenerife. Momentazo 🥹🐕",
-            wrongMsg: "¡Era un perro con síndrome de Down! Fue súper tierno verlo 🐶💕"
-        },
-        // ── Bromas internas ──
-        {
-            emoji: "💬",
+            emoji: "\uD83D\uDCAC",
             category: "Broma interna",
-            question: "¿Cuál de estos NO es un mote que nos decimos?",
+            question: "\u00BFCuál de estos NO es un mote que nos decimos?",
             options: [
                 "Amorcin",
                 "Gordi",
@@ -692,14 +656,13 @@
                 "Amor"
             ],
             correct: 2,
-            correctMsg: "¡Correcto! \"Cielo\" no es de los nuestros. Amorcin, gordi y amor... eso sí que es lo nuestro 🥰",
-            wrongMsg: "¡\"Cielo\" no es nuestro! Lo nuestro es amorcin, gordi y amor. Así nos va 💕"
+            correctMsg: "\"Cielo\" no es de los nuestros. Amorcin, gordi y amor... eso sí que es lo nuestro",
+            wrongMsg: "\"Cielo\" no es nuestro. Lo nuestro es amorcin, gordi y amor"
         },
-        // ── Aventura ──
         {
-            emoji: "🚣",
+            emoji: "\uD83D\uDEA3",
             category: "Aventura juntos",
-            question: "¿En qué río nos tiramos haciendo rafting como unos valientes?",
+            question: "\u00BFEn qué río nos tiramos haciendo rafting como unos valientes?",
             options: [
                 "Río Gállego",
                 "Río Ara",
@@ -707,13 +670,13 @@
                 "Río Cinca"
             ],
             correct: 2,
-            correctMsg: "¡Río Esera! Menuda aventura. Y luego tan tranquilos en La Pardina 🏔️",
-            wrongMsg: "¡Era el río Esera! Cerca de Aínsa, cuando nos alojamos en La Pardina. Qué días aquellos 🌊"
+            correctMsg: "Río Esera. Menuda aventura. Y luego tan tranquilos en La Pardina",
+            wrongMsg: "Era el río Esera. Cerca de Aínsa, cuando nos alojamos en La Pardina"
         },
         {
-            emoji: "🏡",
+            emoji: "\uD83C\uDFE1",
             category: "Nuestros lugares",
-            question: "¿Cómo se llamaba el sitio donde nos alojamos cerca de Aínsa?",
+            question: "\u00BFCómo se llamaba el sitio donde nos alojamos cerca de Aínsa?",
             options: [
                 "La Estada",
                 "Casa Laplana",
@@ -721,14 +684,13 @@
                 "El Rincón del Pirineo"
             ],
             correct: 2,
-            correctMsg: "¡La Pardina! Qué sitio más bonito. Rafting por el día, tranquilidad por la noche 🌄",
-            wrongMsg: "¡Era La Pardina! Nuestro refugio pirenaico después de conquistar el Esera 🏔️"
+            correctMsg: "La Pardina. Qué sitio más bonito. Rafting por el día, tranquilidad por la noche",
+            wrongMsg: "Era La Pardina. Nuestro refugio pirenaico después de conquistar el Esera"
         },
-        // ── Anécdota graciosa ──
         {
-            emoji: "🤦‍♂️",
+            emoji: "\uD83E\uDD26\u200D\u2642\uFE0F",
             category: "Anécdota graciosa",
-            question: "¿Qué desastre me pasó en Tenerife que seguro recuerdas?",
+            question: "\u00BFQué desastre me pasó en Tenerife que seguro recuerdas?",
             options: [
                 "Me dejé el móvil en el hotel",
                 "Perdí la bolsa en el coche de alquiler",
@@ -736,12 +698,82 @@
                 "Me quemé con el sol el primer día"
             ],
             correct: 1,
-            correctMsg: "Sí... la bolsa en el coche de alquiler. ¡Todavía me acuerdo! Menos mal que me aguantas 😅❤️",
-            wrongMsg: "¡Dejé la bolsa en el coche de alquiler! Menudo desastre. Gracias por quererme igual 😂🤦"
+            correctMsg: "Sí... la bolsa en el coche de alquiler. Todavía me acuerdo. Menos mal que me aguantas",
+            wrongMsg: "Dejé la bolsa en el coche de alquiler. Menudo desastre. Gracias por quererme igual"
+        },
+        {
+            emoji: "\uD83C\uDF7D\uFE0F",
+            category: "Recuerdo bonito",
+            question: "Cuando comimos en el Tilo de Vallecas en Soria, \u00BFcuál era el plato favorito de Alba?",
+            options: [
+                "Chuletón a la brasa",
+                "Cochinillo asado",
+                "Rabo de toro deshuesado con patata asada",
+                "Solomillo al Pedro Ximénez"
+            ],
+            correct: 2,
+            correctMsg: "Rabo de toro deshuesado con patata asada. Y menudo plato, gordi. Se te caía la baba",
+            wrongMsg: "Era el rabo de toro deshuesado con patata asada. Tu plato favorito y lo olvidas..."
+        },
+        {
+            emoji: "\u26EA",
+            category: "Nuestros lugares",
+            question: "\u00BFQué ermita visitamos en Soria?",
+            options: [
+                "Ermita de San Baudelio de Berlanga",
+                "Ermita de San Saturio",
+                "Ermita de San Bartolomé",
+                "Ermita de la Virgen del Mirón"
+            ],
+            correct: 1,
+            correctMsg: "La ermita de San Saturio. Qué sitio tan bonito al lado del Duero",
+            wrongMsg: "Era la ermita de San Saturio. Esa al borde del río, con esas vistas..."
+        },
+        {
+            emoji: "\uD83D\uDC80",
+            category: "Anécdota graciosa",
+            question: "En el Valle de Otal nos encontramos algo y nos lo llevamos... \u00BFqué era?",
+            options: [
+                "Una piedra con forma de corazón",
+                "Un cuerno de cabra",
+                "Un cráneo de vaca",
+                "Una pluma de águila"
+            ],
+            correct: 2,
+            correctMsg: "Un cráneo de vaca. Y nos lo llevamos como si fuera un trofeo. Somos únicos",
+            wrongMsg: "Era un cráneo de vaca. Y sí, nos lo llevamos. Normal, totalmente normal"
+        },
+        {
+            emoji: "\uD83D\uDC3F\uFE0F",
+            category: "Momento tierno",
+            question: "\u00BFQué animales vimos en el Valle de Otal que nos hizo mucha ilusión?",
+            options: [
+                "Cabras montesas",
+                "Marmotas",
+                "Ciervos",
+                "Águilas reales"
+            ],
+            correct: 1,
+            correctMsg: "Marmotas. Ahí estaban las muy majas, asomándose entre las rocas",
+            wrongMsg: "Eran marmotas. No me digas que no te acuerdas de esas bolitas asomando..."
+        },
+        {
+            emoji: "\uD83C\uDF54",
+            category: "Recuerdo bonito",
+            question: "De camino a Cantabria para alojarnos, paramos a comer en...",
+            options: [
+                "Palencia",
+                "Valladolid",
+                "Burgos",
+                "León"
+            ],
+            correct: 2,
+            correctMsg: "Burgos. Parada obligatoria para coger fuerzas antes de llegar a Cantabria",
+            wrongMsg: "Era Burgos. Esa paradita que hicimos de camino, para comer tranquilos"
         }
     ];
 
-    // Shuffle and pick questions for each game
+    // Shuffle questions for each game
     function shuffleArray(arr) {
         const shuffled = [...arr];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -777,7 +809,7 @@
         container.innerHTML = '';
         for (let i = 0; i < MAX_LIVES; i++) {
             const heart = document.createElement('span');
-            heart.textContent = '❤️';
+            heart.textContent = '\u2764\uFE0F';
             if (i >= lives) heart.classList.add('lost');
             container.appendChild(heart);
         }
@@ -867,7 +899,7 @@
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn';
-        nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente →' : 'Ver resultado ✨';
+        nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente \u2192' : 'Ver resultado';
         nextBtn.onclick = nextQuestion;
         feedbackContainer.appendChild(nextBtn);
     }
@@ -887,22 +919,22 @@
         document.getElementById('progressBar').style.width = '100%';
 
         let icon, title, message;
-        const livesText = lives === MAX_LIVES ? '¡sin perder ni una vida!' : `con ${lives} vida${lives > 1 ? 's' : ''} restante${lives > 1 ? 's' : ''}`;
+        const livesText = lives === MAX_LIVES ? 'sin perder ni una vida' : `con ${lives} vida${lives > 1 ? 's' : ''} restante${lives > 1 ? 's' : ''}`;
 
         if (lives === MAX_LIVES) {
-            icon = "👑";
-            title = "¡Perfecta, amorcin!";
-            message = `No has fallado ni una. ${livesText} Te acuerdas de todo lo nuestro al detalle. Eres increíble 🥹`;
+            icon = "\uD83D\uDC51";
+            title = "Perfecta, amorcin";
+            message = `No has fallado ni una. ${livesText}. Te acuerdas de todo lo nuestro al detalle.`;
             launchConfetti();
         } else if (lives >= 3) {
-            icon = "🥰";
-            title = "¡Casi perfecto!";
-            message = `Has terminado ${livesText}. Se nota que lo nuestro te importa tanto como a mí. Eres lo mejor que me ha pasado.`;
+            icon = "\uD83E\uDD70";
+            title = "Casi perfecto";
+            message = `Has terminado ${livesText}. Se nota que lo nuestro te importa tanto como a mí.`;
             launchConfetti();
         } else {
-            icon = "😏";
-            title = "¡Por los pelos!";
-            message = `Has terminado ${livesText}. ¡Uf, qué justo! Menos mal que te acuerdas de lo importante... de quererme 😂❤️`;
+            icon = "\uD83D\uDE0F";
+            title = "Por los pelos";
+            message = `Has terminado ${livesText}. Uf, qué justo. Menos mal que te acuerdas de lo importante... de quererme.`;
             launchConfetti();
         }
 
@@ -914,19 +946,19 @@
             Desde Comillas hasta Tenerife, desde el río Esera hasta los monólogos de Madrid...<br><br>
             <strong>Gracias por ser mi compañera de aventuras.</strong><br>
             <strong>Gracias por ser mi amorcin.</strong><br><br>
-            Esto no es más que el principio. 💕<br>
+            Esto no es más que el principio.<br>
             <strong>Te quiero.</strong>
         `;
     }
 
     function launchConfetti() {
         const container = document.getElementById('confettiContainer');
-        const emojis = ['❤️', '💕', '✨', '💫', '🥰', '💗', '🌸'];
+        const items = ['\u2728', '\u2B50', '\u2764\uFE0F', '\uD83C\uDF1F', '\u2726'];
         for (let i = 0; i < 40; i++) {
             setTimeout(() => {
                 const piece = document.createElement('span');
                 piece.className = 'confetti-piece';
-                piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                piece.textContent = items[Math.floor(Math.random() * items.length)];
                 piece.style.left = Math.random() * 100 + '%';
                 piece.style.animationDuration = (2 + Math.random() * 3) + 's';
                 piece.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
