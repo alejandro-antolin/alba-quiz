@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-## Project goal
+## Project goal 
 This project is a romantic web quiz for Alba.
 It is meant to be played together on Saturday.
 The purpose is to remember shared moments, laugh, feel tenderness, and strengthen the relationship.
