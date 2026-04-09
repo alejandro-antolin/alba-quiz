@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para ti, Alba</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💝</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&display=swap');
 
@@ -283,7 +284,7 @@
         .option-btn:hover {
             background: rgba(201,138,142,0.1);
             border-color: rgba(201,138,142,0.35);
-            color: var(--accent-soft);
+            color: var(--accent);
             transform: translateX(4px);
         }
 
@@ -447,6 +448,59 @@
             color: var(--accent-light);
         }
 
+        /* ── Question transition ── */
+        .screen.fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to   { opacity: 0; transform: translateY(-15px); }
+        }
+
+        /* ── Surprise screen ── */
+        .surprise-reveal {
+            background: linear-gradient(135deg, rgba(201,138,142,0.08), rgba(201,138,142,0.03));
+            border: 1px solid rgba(201,138,142,0.18);
+            border-radius: 20px;
+            padding: 30px 24px;
+            text-align: center;
+            margin-bottom: 24px;
+            max-width: 380px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealGift 0.8s ease 0.5s forwards;
+        }
+
+        .surprise-camera {
+            font-size: 4.5rem;
+            margin-bottom: 16px;
+            animation: pulse 2.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 18px var(--accent-glow));
+        }
+
+        .surprise-text {
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            line-height: 1.85;
+        }
+
+        .surprise-text strong { color: var(--accent); }
+
+        .surprise-footer {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-top: 8px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 1.3s forwards;
+        }
+
+        @keyframes revealGift {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         /* Confetti */
         .confetti-container {
             position: fixed;
@@ -497,7 +551,7 @@
 
     <!-- INTRO SCREEN -->
     <div class="screen" id="introScreen">
-        <div class="welcome-icon">&#127918;</div>
+        <div class="welcome-icon">&#128149;</div>
         <h2 class="welcome-title" style="font-size:1.6rem;">Antes de empezar...</h2>
         <p class="welcome-subtitle" style="margin-bottom:20px;">
             Esto no es un examen, es un viaje por lo nuestro.
@@ -517,7 +571,7 @@
             </div>
             <div class="intro-rule">
                 <span class="intro-rule-icon">&#127942;</span>
-                <span class="intro-rule-text">Al final hay una <strong>sorpresa</strong>... si llegas</span>
+                <span class="intro-rule-text">Al final hay una <strong>sorpresa</strong> esperándote</span>
             </div>
         </div>
         <button class="btn" onclick="startGame()">Vamos</button>
@@ -541,27 +595,33 @@
         <div id="feedbackContainer"></div>
     </div>
 
-    <!-- GAME OVER SCREEN -->
-    <div class="screen" id="gameOverScreen">
-        <div class="result-icon">&#128148;</div>
-        <h2 class="result-title">Se acabaron las vidas</h2>
-        <p class="result-message" style="margin-top: 16px;">
-            Nada, nada... habrá que volver a vivir todos esos momentos juntos para refrescarte la memoria
-        </p>
-        <div class="result-love-note">
-            Tranquila amorcin, lo importante no es acertar...<br>
-            es que <strong>todos esos recuerdos son nuestros</strong>.
-        </div>
-        <button class="restart-btn" onclick="restartGame()">Intentar de nuevo</button>
-    </div>
-
     <!-- RESULT SCREEN -->
     <div class="screen" id="resultScreen">
         <div class="result-icon" id="resultIcon"></div>
         <h2 class="result-title" id="resultTitle"></h2>
         <p class="result-message" id="resultMessage"></p>
         <div class="result-love-note" id="resultNote"></div>
-        <button class="restart-btn" onclick="restartGame()">Volver a jugar</button>
+        <button class="btn" onclick="showSurprise()" style="margin-top:8px;">Hay algo más...</button>
+    </div>
+
+    <!-- SURPRISE SCREEN -->
+    <div class="screen" id="surpriseScreen">
+        <div class="welcome-icon">&#127873;</div>
+        <h2 class="welcome-title" style="font-size:1.6rem;">Tengo algo para ti</h2>
+        <p class="welcome-subtitle" style="margin-bottom:22px;">
+            Una última pista antes de que lo descubras...
+        </p>
+        <div class="surprise-reveal">
+            <div class="surprise-camera">&#10067;</div>
+            <p class="surprise-text">
+                Convierte un momento en algo que puedes tocar.<br>
+                Vive entre dos mundos sin pertenecer del todo a ninguno.<br>
+                No lo encontrarás en ninguna app,<br>
+                pero sí en tu bolsillo.<br><br>
+                <strong>¿Sabes qué es?</strong>
+            </p>
+        </div>
+        <p class="surprise-footer">Te quiero, amorcin.</p>
     </div>
 
 </div>
@@ -646,20 +706,6 @@
             wrongMsg: "Fue ir a un monólogo. Y desde entonces somos fans oficiales del humor en vivo"
         },
         {
-            emoji: "\uD83D\uDCAC",
-            category: "Broma interna",
-            question: "\u00BFCuál de estos NO es un mote que nos decimos?",
-            options: [
-                "Amorcin",
-                "Gordi",
-                "Cielo",
-                "Amor"
-            ],
-            correct: 2,
-            correctMsg: "\"Cielo\" no es de los nuestros. Amorcin, gordi y amor... eso sí que es lo nuestro",
-            wrongMsg: "\"Cielo\" no es nuestro. Lo nuestro es amorcin, gordi y amor"
-        },
-        {
             emoji: "\uD83D\uDEA3",
             category: "Aventura juntos",
             question: "\u00BFEn qué río nos tiramos haciendo rafting como unos valientes?",
@@ -686,20 +732,6 @@
             correct: 2,
             correctMsg: "La Pardina. Qué sitio más bonito. Rafting por el día, tranquilidad por la noche",
             wrongMsg: "Era La Pardina. Nuestro refugio pirenaico después de conquistar el Esera"
-        },
-        {
-            emoji: "\uD83E\uDD26\u200D\u2642\uFE0F",
-            category: "Anécdota graciosa",
-            question: "\u00BFQué desastre me pasó en Tenerife que seguro recuerdas?",
-            options: [
-                "Me dejé el móvil en el hotel",
-                "Perdí la bolsa en el coche de alquiler",
-                "Se me olvidó el pasaporte",
-                "Me quemé con el sol el primer día"
-            ],
-            correct: 1,
-            correctMsg: "Sí... la bolsa en el coche de alquiler. Todavía me acuerdo. Menos mal que me aguantas",
-            wrongMsg: "Dejé la bolsa en el coche de alquiler. Menudo desastre. Gracias por quererme igual"
         },
         {
             emoji: "\uD83C\uDF7D\uFE0F",
@@ -746,7 +778,7 @@
         {
             emoji: "\uD83D\uDC3F\uFE0F",
             category: "Momento tierno",
-            question: "\u00BFQué animales vimos en el Valle de Otal que nos hizo mucha ilusión?",
+            question: "\u00BFQué animales nos encontramos en el Valle de Otal?",
             options: [
                 "Cabras montesas",
                 "Marmotas",
@@ -816,6 +848,7 @@
     }
 
     function loseOneLife() {
+        if (lives <= 0) return;
         lives--;
         const hearts = document.querySelectorAll('#livesContainer span');
         const heartToLose = hearts[lives];
@@ -889,14 +922,6 @@
         feedback.textContent = isCorrect ? q.correctMsg : q.wrongMsg;
         feedbackContainer.appendChild(feedback);
 
-        // Check if game over
-        if (lives <= 0) {
-            setTimeout(() => {
-                showScreen('gameOverScreen');
-            }, 1200);
-            return;
-        }
-
         const nextBtn = document.createElement('button');
         nextBtn.className = 'next-btn';
         nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente \u2192' : 'Ver resultado';
@@ -906,12 +931,19 @@
 
     function nextQuestion() {
         currentQuestion++;
-        if (currentQuestion < questions.length) {
-            showScreen('questionScreen');
-            loadQuestion();
-        } else {
-            showResult();
-        }
+        const screen = document.getElementById('questionScreen');
+        screen.classList.add('fade-out');
+        setTimeout(() => {
+            screen.classList.remove('fade-out');
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+                screen.classList.remove('active');
+                void screen.offsetWidth;
+                screen.classList.add('active');
+            } else {
+                showResult();
+            }
+        }, 300);
     }
 
     function showResult() {
@@ -919,36 +951,44 @@
         document.getElementById('progressBar').style.width = '100%';
 
         let icon, title, message;
-        const livesText = lives === MAX_LIVES ? 'sin perder ni una vida' : `con ${lives} vida${lives > 1 ? 's' : ''} restante${lives > 1 ? 's' : ''}`;
 
         if (lives === MAX_LIVES) {
             icon = "\uD83D\uDC51";
             title = "Perfecta, amorcin";
-            message = `No has fallado ni una. ${livesText}. Te acuerdas de todo lo nuestro al detalle.`;
-            launchConfetti();
+            message = "No has fallado ni una. Te acuerdas de todo lo nuestro al detalle.";
         } else if (lives >= 3) {
             icon = "\uD83E\uDD70";
             title = "Casi perfecto";
-            message = `Has terminado ${livesText}. Se nota que lo nuestro te importa tanto como a mí.`;
-            launchConfetti();
-        } else {
+            message = `Has terminado con ${lives} vidas. Se nota que lo nuestro te importa tanto como a mí.`;
+        } else if (lives >= 1) {
             icon = "\uD83D\uDE0F";
             title = "Por los pelos";
-            message = `Has terminado ${livesText}. Uf, qué justo. Menos mal que te acuerdas de lo importante... de quererme.`;
-            launchConfetti();
+            message = `Has terminado con ${lives} vida${lives > 1 ? 's' : ''}. Uf, qué justo. Menos mal que te acuerdas de lo importante... de quererme.`;
+        } else {
+            icon = "\uD83E\uDD7A";
+            title = "Lo importante es lo nuestro";
+            message = "Se te han acabado las vidas, pero no los recuerdos. Lo que importa es que todos esos momentos son nuestros.";
         }
+
+        launchConfetti();
 
         document.getElementById('resultIcon').textContent = icon;
         document.getElementById('resultTitle').textContent = title;
         document.getElementById('resultMessage').textContent = message;
         document.getElementById('resultNote').innerHTML = `
             Gordi, cada momento contigo es especial.<br>
-            Desde Comillas hasta Tenerife, desde el río Esera hasta los monólogos de Madrid...<br><br>
+            Desde Comillas hasta Soria, desde el río Esera hasta los monólogos de Madrid...<br><br>
             <strong>Gracias por ser mi compañera de aventuras.</strong><br>
             <strong>Gracias por ser mi amorcin.</strong><br><br>
             Esto no es más que el principio.<br>
             <strong>Te quiero.</strong>
         `;
+    }
+
+    function showSurprise() {
+        document.getElementById('confettiContainer').innerHTML = '';
+        showScreen('surpriseScreen');
+        setTimeout(() => launchConfetti(), 1200);
     }
 
     function launchConfetti() {
