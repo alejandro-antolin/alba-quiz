@@ -395,6 +395,190 @@
 
         .result-love-note strong { color: var(--accent); }
 
+        @keyframes optionSlideIn {
+            from { opacity: 0; transform: translateX(-14px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── Option layout (flex for letter badge) ── */
+        .option-btn {
+            display: flex;
+            align-items: center;
+        }
+
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(201,138,142,0.1);
+            border: 1px solid rgba(201,138,142,0.2);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-right: 12px;
+            transition: all 0.25s ease;
+        }
+
+        .option-btn:hover .option-letter {
+            background: rgba(201,138,142,0.22);
+            border-color: rgba(201,138,142,0.4);
+        }
+
+        .option-btn.correct .option-letter {
+            background: rgba(100,160,100,0.2);
+            border-color: rgba(100,160,100,0.4);
+            color: #4a8a4a;
+        }
+
+        .option-btn.wrong-selected .option-letter {
+            background: rgba(180,90,80,0.15);
+            border-color: rgba(180,90,80,0.3);
+            color: #b07070;
+        }
+
+        /* ── Game HUD ── */
+        .hud-score {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(201,138,142,0.08);
+            border: 1px solid rgba(201,138,142,0.18);
+            border-radius: 20px;
+            padding: 5px 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: transform 0.15s ease;
+            white-space: nowrap;
+        }
+
+        @keyframes scorePop {
+            0%   { transform: scale(1); }
+            45%  { transform: scale(1.28); }
+            100% { transform: scale(1); }
+        }
+
+        .hud-score.pop { animation: scorePop 0.3s ease; }
+
+        @keyframes correctBounce {
+            0%   { transform: scale(1); }
+            35%  { transform: scale(1.045) translateX(3px); }
+            70%  { transform: scale(0.98); }
+            100% { transform: scale(1); }
+        }
+
+        /* ── Card shake on wrong ── */
+        @keyframes cardShake {
+            0%,100% { transform: translateX(0); }
+            15%     { transform: translateX(-9px); }
+            30%     { transform: translateX(9px); }
+            45%     { transform: translateX(-6px); }
+            60%     { transform: translateX(6px); }
+            75%     { transform: translateX(-3px); }
+            90%     { transform: translateX(3px); }
+        }
+
+        .question-card.shake { animation: cardShake 0.45s ease; }
+
+        /* ── Floating +pts ── */
+        .float-score {
+            position: fixed;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #5a9a5a;
+            pointer-events: none;
+            z-index: 500;
+            animation: floatScoreUp 0.85s ease forwards;
+        }
+
+        @keyframes floatScoreUp {
+            0%   { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-55px) scale(1.15); }
+        }
+
+        /* ── Streak popup ── */
+        .streak-popup {
+            position: fixed;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 300;
+            background: linear-gradient(135deg, #c98a8e, #a66065);
+            color: #fff;
+            padding: 11px 26px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            pointer-events: none;
+            box-shadow: 0 8px 32px rgba(201,138,142,0.45);
+            animation: streakAnim 1.2s ease forwards;
+        }
+
+        @keyframes streakAnim {
+            0%   { opacity: 0; transform: translate(-50%,-50%) scale(0.65); }
+            20%  { opacity: 1; transform: translate(-50%,-58%) scale(1.06); }
+            70%  { opacity: 1; transform: translate(-50%,-62%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%,-78%) scale(0.88); }
+        }
+
+        /* ── Result score counter ── */
+        .score-counter-wrap {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .score-counter {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c98a8e, #dba8ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .score-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            background: rgba(201,138,142,0.07);
+            border: 1px solid rgba(201,138,142,0.15);
+            border-radius: 16px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            font-weight: 600;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .stat-pill strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1px;
+        }
+
         .restart-btn {
             background: transparent;
             border: 1.5px solid rgba(201,138,142,0.3);
@@ -584,9 +768,9 @@
         </div>
         <div class="question-header">
             <div class="progress-text" id="progressText"></div>
-            <div class="lives" id="livesContainer"></div>
+<div class="lives" id="livesContainer"></div>
         </div>
-        <div class="question-card">
+        <div class="question-card" id="questionCard">
             <div class="question-category" id="questionCategory"></div>
             <div class="question-emoji" id="questionEmoji"></div>
             <p class="question-text" id="questionText"></p>
@@ -621,12 +805,29 @@
                 <strong>¿Sabes qué es?</strong>
             </p>
         </div>
-        <p class="surprise-footer">Te quiero, amorcin.</p>
     </div>
 
 </div>
 
 <div class="confetti-container" id="confettiContainer"></div>
+
+<!-- DEV ONLY: skip to end -->
+<button id="devSkipBtn" onclick="showSurprise()" style="
+    display:none;
+    position:fixed;
+    bottom:16px;
+    right:16px;
+    z-index:9999;
+    background:rgba(0,0,0,0.55);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:8px;
+    padding:6px 12px;
+    font-size:0.75rem;
+    font-family:monospace;
+    cursor:pointer;
+    opacity:0.7;
+">⏭ skip to end [DEV]</button>
 
 <script>
     // ── Floating particles background ──
@@ -646,6 +847,11 @@
         }
     }
     createParticles();
+
+    // Show dev skip button only on local
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
+        document.getElementById('devSkipBtn').style.display = 'block';
+    }
 
     // ── Questions data ──
     const allQuestions = [
@@ -809,6 +1015,9 @@
     let score = 0;
     let lives = MAX_LIVES;
     let answered = false;
+    let streak = 0;
+    let maxStreak = 0;
+    let totalPoints = 0;
 
     function showIntro() {
         showScreen('introScreen');
@@ -847,6 +1056,9 @@
         currentQuestion = 0;
         score = 0;
         lives = MAX_LIVES;
+        streak = 0;
+        maxStreak = 0;
+        totalPoints = 0;
         questions = shuffleArray(allQuestions);
         showScreen('questionScreen');
         loadQuestion();
@@ -868,10 +1080,12 @@
         const optionsContainer = document.getElementById('optionsContainer');
         optionsContainer.innerHTML = '';
 
+        const letters = ['A', 'B', 'C', 'D'];
         q.options.forEach((option, index) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.textContent = option;
+            btn.style.cssText = `opacity:0; animation: optionSlideIn 0.3s ease ${index * 0.08}s forwards;`;
+            btn.innerHTML = `<span class="option-letter">${letters[index]}</span>${option}`;
             btn.onclick = () => selectAnswer(index);
             optionsContainer.appendChild(btn);
         });
@@ -879,40 +1093,71 @@
 
     function selectAnswer(index) {
         if (answered) return;
-        answered = true;
 
         const q = questions[currentQuestion];
         const buttons = document.querySelectorAll('.option-btn');
         const isCorrect = index === q.correct;
+        const feedbackContainer = document.getElementById('feedbackContainer');
 
         if (isCorrect) {
+            answered = true;
             score++;
+            streak++;
+            if (streak > maxStreak) maxStreak = streak;
+
+            // Bounce correct, lock all others
+            buttons[q.correct].style.cssText = 'opacity:1; animation: correctBounce 0.4s ease forwards;';
+            buttons.forEach((btn, i) => {
+                if (i === q.correct) btn.classList.add('correct');
+                else btn.classList.add('disabled');
+            });
+
+            if (streak >= 2) showStreakPopup(streak);
+
+            feedbackContainer.innerHTML = '';
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback correct';
+            feedback.textContent = q.correctMsg;
+            feedbackContainer.appendChild(feedback);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'next-btn';
+            nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente \u2192' : 'Ver resultado';
+            nextBtn.onclick = nextQuestion;
+            feedbackContainer.appendChild(nextBtn);
+
         } else {
+            streak = 0;
             loseOneLife();
+
+            // Shake card
+            const card = document.getElementById('questionCard');
+            card.classList.remove('shake');
+            void card.offsetWidth;
+            card.classList.add('shake');
+            setTimeout(() => card.classList.remove('shake'), 450);
+
+            // Disable only this wrong button, leave others active
+            buttons[index].classList.add('wrong-selected');
+
+            // Replace wrong feedback, no next button yet
+            const old = feedbackContainer.querySelector('.feedback');
+            if (old) old.remove();
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback wrong';
+            feedback.textContent = q.wrongMsg;
+            feedbackContainer.appendChild(feedback);
         }
+    }
 
-        // Highlight correct answer, mark wrong selection, fade rest
-        buttons.forEach((btn, i) => {
-            if (i === q.correct) {
-                btn.classList.add('correct');
-            } else if (i === index && !isCorrect) {
-                btn.classList.add('wrong-selected');
-            } else {
-                btn.classList.add('disabled');
-            }
-        });
-
-        const feedbackContainer = document.getElementById('feedbackContainer');
-        const feedback = document.createElement('div');
-        feedback.className = isCorrect ? 'feedback correct' : 'feedback wrong';
-        feedback.textContent = isCorrect ? q.correctMsg : q.wrongMsg;
-        feedbackContainer.appendChild(feedback);
-
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'next-btn';
-        nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente \u2192' : 'Ver resultado';
-        nextBtn.onclick = nextQuestion;
-        feedbackContainer.appendChild(nextBtn);
+function showStreakPopup(n) {
+        const msgs = { 2: '¡Dos seguidas! 🔥', 3: '¡Racha de tres! 🔥🔥', 4: '¡Imparable! 💫', 5: '¡Perfección! 👑' };
+        const msg = msgs[n] || `¡Racha de ${n}! 🔥`;
+        const el = document.createElement('div');
+        el.className = 'streak-popup';
+        el.textContent = msg;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1200);
     }
 
     function nextQuestion() {
@@ -961,6 +1206,7 @@
         document.getElementById('resultIcon').textContent = icon;
         document.getElementById('resultTitle').textContent = title;
         document.getElementById('resultMessage').textContent = message;
+
         document.getElementById('resultNote').innerHTML = `
             <strong>Gracias por ser mi compañera de aventuras.</strong><br>
             <strong>Gracias por ser mi amorcin.</strong><br><br>
@@ -968,6 +1214,7 @@
             <strong>Te quiero.</strong>
         `;
     }
+
 
     function showSurprise() {
         document.getElementById('confettiContainer').innerHTML = '';
