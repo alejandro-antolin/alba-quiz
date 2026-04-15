@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Para ti, Alba</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💝</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤍</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&display=swap');
 
@@ -27,13 +27,17 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            min-height: 100vh;
+            min-height: 100dvh;
             background:
                 radial-gradient(ellipse at 20% 0%, rgba(201, 138, 142, 0.12) 0%, transparent 55%),
                 radial-gradient(ellipse at 80% 100%, rgba(219, 168, 171, 0.08) 0%, transparent 55%),
                 linear-gradient(160deg, #faf5f5 0%, #f5eeee 50%, #f8f3f3 100%);
             color: var(--text-main);
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            overscroll-behavior-y: none;
         }
 
         /* ── Floating particles ── */
@@ -64,16 +68,23 @@
             z-index: 1;
             max-width: 500px;
             margin: 0 auto;
-            padding: 24px 20px;
-            min-height: 100vh;
+            padding: max(env(safe-area-inset-top), 28px) max(env(safe-area-inset-right), 20px) max(env(safe-area-inset-bottom), 28px) max(env(safe-area-inset-left), 20px);
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            overflow-y: auto;
         }
 
         /* ── Screens ── */
         .screen { display: none; animation: fadeIn 0.55s ease; }
-        .screen.active { display: flex; flex-direction: column; align-items: center; }
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* auto margins: centers vertically when room exists, collapses gracefully on overflow */
+            margin-top: auto;
+            margin-bottom: auto;
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(22px); }
@@ -157,10 +168,15 @@
             transition: all 0.3s ease;
             box-shadow: 0 6px 28px rgba(201, 138, 142, 0.3);
             letter-spacing: 0.02em;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 52px;
         }
 
-        .btn:hover  { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(201, 138, 142, 0.4); }
-        .btn:active { transform: translateY(0); }
+        @media (hover: hover) {
+            .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(201, 138, 142, 0.4); }
+        }
+        .btn:active { transform: translateY(1px); box-shadow: 0 4px 18px rgba(201, 138, 142, 0.3); }
 
         /* ── Question screen ── */
         .progress-bar-container {
@@ -279,13 +295,24 @@
             transition: all 0.25s ease;
             text-align: left;
             position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 52px;
         }
 
-        .option-btn:hover {
+        @media (hover: hover) {
+            .option-btn:hover {
+                background: rgba(201,138,142,0.1);
+                border-color: rgba(201,138,142,0.35);
+                color: var(--accent);
+                transform: translateX(4px);
+            }
+        }
+        .option-btn:active:not(.correct):not(.wrong-selected):not(.disabled) {
             background: rgba(201,138,142,0.1);
             border-color: rgba(201,138,142,0.35);
             color: var(--accent);
-            transform: translateX(4px);
+            transform: scale(0.98);
         }
 
         .option-btn.correct {
@@ -344,12 +371,17 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 50px;
         }
 
-        .next-btn:hover {
-            background: rgba(201,138,142,0.2);
-            border-color: rgba(201,138,142,0.5);
-            box-shadow: 0 4px 20px rgba(201,138,142,0.2);
+        @media (hover: hover) {
+            .next-btn:hover {
+                background: rgba(201,138,142,0.2);
+                border-color: rgba(201,138,142,0.5);
+                box-shadow: 0 4px 20px rgba(201,138,142,0.2);
+            }
         }
 
         /* ── Result / Game Over ── */
@@ -423,9 +455,11 @@
             transition: all 0.25s ease;
         }
 
-        .option-btn:hover .option-letter {
-            background: rgba(201,138,142,0.22);
-            border-color: rgba(201,138,142,0.4);
+        @media (hover: hover) {
+            .option-btn:hover .option-letter {
+                background: rgba(201,138,142,0.22);
+                border-color: rgba(201,138,142,0.4);
+            }
         }
 
         .option-btn.correct .option-letter {
@@ -590,11 +624,16 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 48px;
         }
 
-        .restart-btn:hover {
-            background: rgba(201,138,142,0.08);
-            border-color: rgba(201,138,142,0.45);
+        @media (hover: hover) {
+            .restart-btn:hover {
+                background: rgba(201,138,142,0.08);
+                border-color: rgba(201,138,142,0.45);
+            }
         }
 
         /* ── Intro screen ── */
@@ -712,6 +751,140 @@
                 opacity: 0;
             }
         }
+
+        /* ── Photos section (result screen) ── */
+        .photos-section {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .photos-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .photo-strip-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .photo-strip {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding: 12px 20px 18px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* snap for satisfying swipe feel */
+            scroll-snap-type: x mandatory;
+        }
+
+        .photo-strip::-webkit-scrollbar { display: none; }
+
+        /* Fade gradient on right — signals more content */
+        .photo-strip-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 64px;
+            background: linear-gradient(to right, transparent, var(--bg-deep) 85%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .photo-card {
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            width: 148px;
+            background: #fff;
+            border-radius: 4px;
+            padding: 5px 5px 26px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07);
+            transition: transform 0.25s ease;
+        }
+
+        .photo-card:nth-child(1) { transform: rotate(-2deg); }
+        .photo-card:nth-child(2) { transform: rotate(1.5deg); }
+        .photo-card:nth-child(3) { transform: rotate(-1deg); }
+        .photo-card:nth-child(4) { transform: rotate(2deg); }
+        .photo-card:active       { transform: rotate(0deg) scale(1.06) !important; }
+
+        .photo-card img {
+            width: 100%;
+            height: 162px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .photo-card-label {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #999;
+            padding-top: 7px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .photo-card--empty { border: 1.5px dashed rgba(201,138,142,0.35); box-shadow: none; }
+
+        .photo-card-empty-img {
+            width: 100%;
+            height: 162px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(201,138,142,0.05), rgba(201,138,142,0.02));
+        }
+
+        .photo-card-empty-icon {
+            font-size: 1.8rem;
+            color: var(--accent-pale);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .photo-card--empty .photo-card-label {
+            color: var(--accent-light);
+            font-style: italic;
+        }
+
+        .swipe-hint {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* ── Surprise hero photo ── */
+        .surprise-hero {
+            width: 100%;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 44px rgba(0,0,0,0.15);
+            border: 4px solid rgba(255,255,255,0.97);
+            margin-bottom: 24px;
+        }
+
+        .surprise-hero img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -785,6 +958,35 @@
         <h2 class="result-title" id="resultTitle"></h2>
         <p class="result-message" id="resultMessage"></p>
         <div class="result-love-note" id="resultNote"></div>
+        <div class="photos-section">
+            <p class="photos-label">🤍 Algunos de nuestros recuerdos</p>
+            <div class="photo-strip-wrapper">
+                <div class="photo-strip">
+                    <div class="photo-card">
+                        <img src="foto-granja.jpg" alt="Granja escuela">
+                        <p class="photo-card-label">Granja escuela 🐰</p>
+                    </div>
+                    <div class="photo-card">
+                        <img src="foto-sansebastian.jpg" alt="San Sebastián">
+                        <p class="photo-card-label">San Sebastián ☀️</p>
+                    </div>
+                    <div class="photo-card">
+                        <img src="foto-koala.jpg" alt="Koala Lumpur">
+                        <p class="photo-card-label">Koala Lumpur 💪</p>
+                    </div>
+                    <div class="photo-card">
+                        <img src="foto-pirineos.jpg" alt="Pirineos">
+                        <p class="photo-card-label">Valle de Otal 🏔️</p>
+                    </div>
+                    <div class="photo-card photo-card--empty">
+                        <div class="photo-card-empty-img">
+                            <span class="photo-card-empty-icon">✦</span>
+                        </div>
+                        <p class="photo-card-label">Por escribir...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="btn" onclick="showSurprise()" style="margin-top:8px;">Hay algo más...</button>
     </div>
 
@@ -811,23 +1013,11 @@
 
 <div class="confetti-container" id="confettiContainer"></div>
 
-<!-- DEV ONLY: skip to end -->
-<button id="devSkipBtn" onclick="showSurprise()" style="
-    display:none;
-    position:fixed;
-    bottom:16px;
-    right:16px;
-    z-index:9999;
-    background:rgba(0,0,0,0.55);
-    color:#fff;
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:8px;
-    padding:6px 12px;
-    font-size:0.75rem;
-    font-family:monospace;
-    cursor:pointer;
-    opacity:0.7;
-">⏭ skip to end [DEV]</button>
+<!-- DEV ONLY -->
+<div id="devBtns" style="display:none; position:fixed; bottom:16px; right:16px; z-index:9999; display:none; flex-direction:column; gap:6px; align-items:flex-end;">
+    <button onclick="devShowResult()" style="background:rgba(0,0,0,0.55);color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:6px 12px;font-size:0.75rem;font-family:monospace;cursor:pointer;opacity:0.7;">📸 ver fotos [DEV]</button>
+    <button id="devSkipBtn" onclick="showSurprise()" style="background:rgba(0,0,0,0.55);color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:6px 12px;font-size:0.75rem;font-family:monospace;cursor:pointer;opacity:0.7;">⏭ skip to end [DEV]</button>
+</div>
 
 <script>
     // ── Floating particles background ──
@@ -848,9 +1038,9 @@
     }
     createParticles();
 
-    // Show dev skip button only on local
+    // Show dev buttons only on local
     if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
-        document.getElementById('devSkipBtn').style.display = 'block';
+        document.getElementById('devBtns').style.display = 'flex';
     }
 
     // ── Questions data ──
@@ -982,18 +1172,18 @@
             wrongMsg: "Era un cráneo de vaca. Y sí, nos lo llevamos. Normal, totalmente normal"
         },
         {
-            emoji: "\uD83D\uDC3F\uFE0F",
-            category: "Momento tierno",
-            question: "\u00BFQué animales nos encontramos en el Valle de Otal?",
+            emoji: "\uD83C\uDF6E",
+            category: "Aventura juntos",
+            question: "\u00BFQué hicimos en nuestro viaje a San Sebastián?",
             options: [
-                "Cabras montesas",
-                "Marmotas",
-                "Ciervos",
-                "Águilas reales"
+                "Ir a un balneario",
+                "Montarnos en una noria",
+                "Ir de pintxos",
+                "Todas las respuestas son correctas"
             ],
-            correct: 1,
-            correctMsg: "Marmotas. Ahí estaban las muy majas, asomándose entre las rocas",
-            wrongMsg: "Eran marmotas. No me digas que no te acuerdas de esas bolitas asomando..."
+            correct: 3,
+            correctMsg: "¡Todo! Balneario, noria y pintxos. Menudo viaje tan completo, gordi",
+            wrongMsg: "¡Hicimos todo eso! Balneario, noria y pintxos. San Sebastián al completo"
         }
     ];
 
@@ -1115,16 +1305,9 @@
             if (streak >= 2) showStreakPopup(streak);
 
             feedbackContainer.innerHTML = '';
-            const feedback = document.createElement('div');
-            feedback.className = 'feedback correct';
-            feedback.textContent = q.correctMsg;
-            feedbackContainer.appendChild(feedback);
 
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'next-btn';
-            nextBtn.textContent = currentQuestion < questions.length - 1 ? 'Siguiente \u2192' : 'Ver resultado';
-            nextBtn.onclick = nextQuestion;
-            feedbackContainer.appendChild(nextBtn);
+            // Auto-advance after brief pause so the correct state is visible
+            setTimeout(nextQuestion, 900);
 
         } else {
             streak = 0;
@@ -1140,17 +1323,11 @@
             // Disable only this wrong button, leave others active
             buttons[index].classList.add('wrong-selected');
 
-            // Replace wrong feedback, no next button yet
-            const old = feedbackContainer.querySelector('.feedback');
-            if (old) old.remove();
-            const feedback = document.createElement('div');
-            feedback.className = 'feedback wrong';
-            feedback.textContent = q.wrongMsg;
-            feedbackContainer.appendChild(feedback);
+            feedbackContainer.innerHTML = '';
         }
     }
 
-function showStreakPopup(n) {
+    function showStreakPopup(n) {
         const msgs = { 2: '¡Dos seguidas! 🔥', 3: '¡Racha de tres! 🔥🔥', 4: '¡Imparable! 💫', 5: '¡Perfección! 👑' };
         const msg = msgs[n] || `¡Racha de ${n}! 🔥`;
         const el = document.createElement('div');
@@ -1209,12 +1386,17 @@ function showStreakPopup(n) {
 
         document.getElementById('resultNote').innerHTML = `
             <strong>Gracias por ser mi compañera de aventuras.</strong><br>
-            <strong>Gracias por ser mi amorcin.</strong><br><br>
+        
             Esto no es más que el principio.<br>
             <strong>Te quiero.</strong>
         `;
     }
 
+
+    function devShowResult() {
+        lives = MAX_LIVES; score = 10; maxStreak = 10;
+        showResult();
+    }
 
     function showSurprise() {
         document.getElementById('confettiContainer').innerHTML = '';
